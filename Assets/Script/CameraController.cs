@@ -1,4 +1,4 @@
-using DG.Tweening.Plugins.Options;
+ï»¿using DG.Tweening.Plugins.Options;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Properties;
@@ -8,9 +8,9 @@ using UnityEngine.Rendering;
 public class CameraController : MonoBehaviour
 {
 
-    public GameObject set; //set‚Ìprefab
+    public GameObject set; //setã®prefab
     public List<GameObject> setList = new List<GameObject>();
-    public float generateDistanece = 40f; //¶¬‹——£
+    public float generateDistanece = 40f; //ç”Ÿæˆè·é›¢
     public int generateCount = 1;
     public bool isGenerated = false;
 
@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-        // Z²•ûŒü‚ÌˆÚ“®—Ê‚ğ‰ÁZ
+        // Zè»¸æ–¹å‘ã®ç§»å‹•é‡ã‚’åŠ ç®—
         //lastGeneratedPositon += generateDistanece * Time.deltaTime;
         lastGeneratedPositon = (int)transform.position.z;
 
@@ -46,23 +46,23 @@ public class CameraController : MonoBehaviour
 
         return;
 
-        //ˆê’èˆÈãˆÚ“®‚µ‚½‚çPrefab‚ğ¶¬
+        //ä¸€å®šä»¥ä¸Šç§»å‹•ã—ãŸã‚‰Prefabã‚’ç”Ÿæˆ
         if (lastGeneratedPositon % generateDistanece == 0 && !isGenerated)
         {
-            // ¶¬ˆÊ’u‚ğŒvZ
+            // ç”Ÿæˆä½ç½®ã‚’è¨ˆç®—
             Vector3 generatePosition =  Vector3.forward * generateDistanece * generateCount;
 
-            // Prefab‚ğ¶¬
+            // Prefabã‚’ç”Ÿæˆ
             GameObject setObje = Instantiate(set, generatePosition, Quaternion.identity);
 
             setList.Add(setObje);
 
-            //¶¬”‚ğƒJƒEƒ“ƒg
+            //ç”Ÿæˆæ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
             generateCount ++;
 
-            // ¶¬ˆÊ’u‚ğƒŠƒZƒbƒg
+            // ç”Ÿæˆä½ç½®ã‚’ãƒªã‚»ãƒƒãƒˆ
             lastGeneratedPositon = 0f;
-            // ¶¬‚µ‚½
+            // ç”Ÿæˆã—ãŸ
             isGenerated = true;
         }else if (lastGeneratedPositon % generateDistanece != 0)
         {

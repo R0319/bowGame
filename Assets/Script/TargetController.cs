@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,16 +6,16 @@ using DG.Tweening;
 
 public class TargetController : MonoBehaviour
 {
-    //“I‚Ì’†SÀ•W‚ğw’è
+    //çš„ã®ä¸­å¿ƒåº§æ¨™ã‚’æŒ‡å®š
     public Vector3 targetCenter = Vector3.zero;
 
     public int hp = 1;
 
-    //@‹——£‚ÉŠî‚Ã‚¢‚½ƒXƒRƒAŒvZ—p‚Ì”z—ñ
+    //ã€€è·é›¢ã«åŸºã¥ã„ãŸã‚¹ã‚³ã‚¢è¨ˆç®—ç”¨ã®é…åˆ—
     public float[] scoreRings = new float[] { 1.0f, 2.0f, 3.0f, 4.0f, 5.0f };
     public int[] scores = new int[] { 50, 25, 10, 5, 1 };
 
-    //Gizmos‚Åg—p‚·‚éF
+    //Gizmosã§ä½¿ç”¨ã™ã‚‹è‰²
     public Color[] ringColor = new Color[] { Color.red, Color.blue, Color.green, Color.yellow, Color.magenta };
 
     [SerializeField]
@@ -50,27 +50,27 @@ public class TargetController : MonoBehaviour
         }
     }
 
-    //–î‚ª“I‚É“–‚½‚Á‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚éƒƒ\ƒbƒh
+    //çŸ¢ãŒçš„ã«å½“ãŸã£ãŸã¨ãã«å‘¼ã°ã‚Œã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     public void OnArrowHit(Vector3 ArrowPsition)
     {
-        //–î‚Ì“–‚½‚Á‚½êŠ‚ğditance‚É‘ã“ü‚·‚é
+        //çŸ¢ã®å½“ãŸã£ãŸå ´æ‰€ã‚’ditanceã«ä»£å…¥ã™ã‚‹
         float distance = Vector2.Distance(transform.position, ArrowPsition);
         int score = CalculateScore(distance);
 
-        //CalculateScore‚ÅŒvZ‚µ‚½score‚ğscoreController‚É‚Á‚Ä‚¢‚­
+        //CalculateScoreã§è¨ˆç®—ã—ãŸscoreã‚’scoreControllerã«æŒã£ã¦ã„ã
         scoreController.UpdateScoreText(score);
 
         Debug.Log(score);
     }
 
     /// <summary>
-    /// ‹——£‚ÉŠî‚Ã‚¢‚ÄƒXƒRƒAŒvZ
+    /// è·é›¢ã«åŸºã¥ã„ã¦ã‚¹ã‚³ã‚¢è¨ˆç®—
     /// </summary>
     /// <param name="distance"></param>
     /// <returns></returns>
     private int CalculateScore(float distance)
     {
-        //–î‚ª“–‚½‚Á‚½’†S‚©‚ç‚Ì‹——£‚É‰‚¶‚Äscore‚ğŒvZ‚·‚é
+        //çŸ¢ãŒå½“ãŸã£ãŸä¸­å¿ƒã‹ã‚‰ã®è·é›¢ã«å¿œã˜ã¦scoreã‚’è¨ˆç®—ã™ã‚‹
         for (int i = 0; i < scoreRings.Length; i++)
         {
             if (distance <= scoreRings[i])
@@ -78,12 +78,12 @@ public class TargetController : MonoBehaviour
                 return scores[i];
             }
         }
-        // “I‚ÌŠO‚É“–‚½‚Á‚½ê‡‚ÌƒXƒRƒA
+        // çš„ã®å¤–ã«å½“ãŸã£ãŸå ´åˆã®ã‚¹ã‚³ã‚¢
         return 0;
     }
 
     
-    //Gizumo‚ğg‚Á‚Ä“_”‚²‚Æ‚Ì“–‚½‚è”»’è‚ğ•`‰æ‚·‚é
+    //Gizumoã‚’ä½¿ã£ã¦ç‚¹æ•°ã”ã¨ã®å½“ãŸã‚Šåˆ¤å®šã‚’æç”»ã™ã‚‹
     private void OnDrawGizmos()
     {
         if (isGizmo) {
@@ -93,7 +93,7 @@ public class TargetController : MonoBehaviour
             for (int i = 0; i < scoreRings.Length; i++)
             {
                 Gizmos.color = ringColor[i % ringColor.Length];
-                // 2DŠÂ‹«‚Å‚Ì•`‰æ
+                // 2Dç’°å¢ƒã§ã®æç”»
                 Gizmos.DrawWireSphere(new Vector3(transform.position.x, transform.position.y, 0), scoreRings[i]);
             }
         }
